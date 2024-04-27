@@ -47,7 +47,7 @@ def solve_via_simulated_annealing(
         new_loss = number_of_conflicts(G, new_colors)
         delta_loss = new_loss - current_loss
 
-        if delta_loss < 0:
+        if delta_loss < 0 or np.random.rand() < np.exp(-delta_loss / t_start):
             current_colors = new_colors
             current_loss = new_loss
 
