@@ -30,6 +30,9 @@ def lu(A: NDArray, permute: bool) -> tuple[NDArray, NDArray, NDArray]:
             U[[j, max_index]] = U[[max_index, j]]
             P[[j, max_index]] = P[[max_index, j]]
 
+            if j != 0:
+                L[[j, max_index], :j] = L[[max_index, j], :j]
+
         for i in range(j + 1, n):
             L[i, j] = U[i, j] / U[j, j]
             U[i, j:] -= L[i, j] * U[j, j:]
